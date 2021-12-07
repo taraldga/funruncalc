@@ -1,43 +1,37 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import logo from './logo.svg'
 import './App.css'
+import Workout from './types/Workout'
+import WorkoutTable, { WorkoutTableProps } from './components/WorkoutTable'
+import Grid from '@mui/material/Grid';
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [workouts, setWorkouts] = useState<Workout[] | undefined>(undefined)
+
+  const fetchData = async () => {
+    const data = await fetch("http://localhost:8080/workout");
+    const workouts = await data.json();
+
+    setWorkouts(workouts);
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
+      <Grid container spacing={2} >
+
+      {workouts !== undefined && (
+        workouts.map(workout => (
+          <Grid item xs={2}>
+            <WorkoutTable workout={workout} />
+          </Grid>
+        )
+      ))}
+     </Grid>
     </div>
   )
 }

@@ -1,0 +1,29 @@
+export default interface Workout {
+        id: string;
+        activityType: string;
+        date: string;
+        title: string;
+        distance: number;
+        calories: number;
+        time: number;
+        avgHr: number;
+        maxHr: number;
+        aerobicTE: number;
+        avgRunCadence: number;
+        maxRunCadence: number;
+        avgPace: number;
+        bestPace: number;
+        totalAscent: number;
+        totalDescent: number;
+        avgStrideLength: number;
+        avgVerticalRatio: number;
+        avgVerticalOscillation: number;
+        avgGroundContactTime: number;
+        avgGCTBalance: string;
+        minTemp: number;
+        timeZ1: number;
+        timeZ2: number;
+        timeZ3: number;
+        timeZ4: number;
+        timeZ5: number;
+}
