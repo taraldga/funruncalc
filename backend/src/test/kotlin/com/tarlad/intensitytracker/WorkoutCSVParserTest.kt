@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 import java.io.BufferedReader
 import java.io.File
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 @SpringBootTest
 class WorkoutCSVParserTest {
@@ -32,4 +34,14 @@ class WorkoutCSVParserTest {
 
         assert(sampleWorkout.title == "Bærum Running")
     }
+
+    @Test
+    fun testLocalDateTime() {
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        val dateTime = LocalDateTime.parse("2021-12-04 15:37:41", formatter)
+        val jsDateTime = LocalDateTime.parse("2021-12-04T14:37:41")
+        println(dateTime.toLocalTime())
+        println(jsDateTime.toLocalTime())
+    }
+
 }

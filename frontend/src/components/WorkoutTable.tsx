@@ -22,7 +22,7 @@ export interface WorkoutTableProps {
 const WorkoutTable: FC<WorkoutTableProps> = ({ workout }) => {
 
     return (
-        <Card sx={{ minWidth: 275 }} variant="outlined">
+        <Card sx={{ maxWidth: 475 }} variant="outlined">
             <CardContent>
                 <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                     {workout.date}
